@@ -1,0 +1,114 @@
+Exercise 1: Text Similarity using Hamming Distance
+
+Concept: Hamming distance measures the number of differing bits or characters between two strings of equal length.
+Practical Application: Comparing DNA sequences, error detection in communication, and simple text similarity.
+Task:
+    1.  Write a Python function `hamming_distance(str1, str2)` that calculates the Hamming distance between two strings.
+    2.  Use the function to compare the following pairs of strings and print their Hamming distances:
+        * "karolin" and "kathrin"
+        * "toned" and "roses"
+        * "1011101" and "1001001"
+    3.  Discuss how the Hamming distance reflects the similarity between the strings in each pair.
+
+
+def hamming_distance(str1, str2):
+    if len(str1) != len(str2):
+        raise ValueError("Strings must be of equal length")
+    distance = 0
+    for i in range(len(str1)):
+        if str1[i] != str2[i]:
+            distance += 1
+    return distance
+
+print(hamming_distance("karolin", "kathrin"))
+print(hamming_distance("toned", "roses"))
+print(hamming_distance("1011101", "1001001"))
+
+
+Exercise 2: Image Feature Comparison using Euclidean Distance
+
+Concept: Euclidean distance is the straight-line distance between two points in Euclidean space.
+Practical Application: Image recognition, clustering, and nearest neighbor searches based on feature vectors.
+Task:
+    1.  Imagine you have two images, and you've extracted feature vectors from them (e.g., using color histograms or deep learning embeddings).
+    2.  Let the feature vectors be:
+        * Image 1: `[1.2, 3.5, 2.1, 0.8]`
+        * Image 2: `[1.0, 3.0, 2.5, 1.0]`
+    3.  Write a Python function `euclidean_distance(vec1, vec2)` that calculates the Euclidean distance between two vectors.
+    4.  Calculate and print the Euclidean distance between the two image feature vectors.
+    5.  Discuss how a smaller Euclidean distance implies higher similarity between the images.
+
+pythonimport math
+
+def euclidean_distance(vec1, vec2):
+    if len(vec1) != len(vec2):
+        raise ValueError("Vectors must be of equal length")
+    squared_diffs = [(vec1[i] - vec2[i])2 for i in range(len(vec1))]
+    return math.sqrt(sum(squared_diffs))
+
+vec1 = [1.2, 3.5, 2.1, 0.8]
+vec2 = [1.0, 3.0, 2.5, 1.0]
+
+print(euclidean_distance(vec1, vec2))
+
+
+Exercise 3: Location-Based Recommendations using Manhattan Distance
+
+Concept: Manhattan distance (or L1 distance) is the sum of the absolute differences between the coordinates of two points.
+Practical Application: Route planning, urban distance calculations, and recommendation systems based on location.
+Task:
+    1.  You have a dataset of restaurants and their coordinates (latitude, longitude).
+    2.  Your current location is (34.0522, -118.2437) (Los Angeles).
+    3.  The coordinates of three restaurants are:
+        * Restaurant A: (34.0300, -118.2600)
+        * Restaurant B: (34.0700, -118.2200)
+        * Restaurant C: (34.1000, -118.3000)
+    4.  Write a Python function `manhattan_distance(coord1, coord2)` that calculates the Manhattan distance between two coordinate pairs.
+    5.  Calculate the Manhattan distance from your location to each restaurant.
+    6.  Recommend the restaurant with the smallest Manhattan distance as the closest.
+
+def manhattan_distance(coord1, coord2):
+    return abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1])
+
+my_location = (34.0522, -118.2437)
+restaurant_a = (34.0300, -118.2600)
+restaurant_b = (34.0700, -118.2200)
+restaurant_c = (34.1000, -118.3000)
+
+distance_a = manhattan_distance(my_location, restaurant_a)
+distance_b = manhattan_distance(my_location, restaurant_b)
+distance_c = manhattan_distance(my_location, restaurant_c)
+
+print(f"Distance to A: {distance_a}")
+print(f"Distance to B: {distance_b}")
+print(f"Distance to C: {distance_c}")
+
+closest_restaurant = min([(distance_a, "A"), (distance_b, "B"), (distance_c, "C")])[1]
+print(f"The closest restaurant is: {closest_restaurant}")
+
+
+Exercise 4: General Distance Calculation with Minkowski Distance
+
+Concept: Minkowski distance is a generalization of Euclidean and Manhattan distances, with a parameter 'p' controlling the distance metric.
+Practical Application: Flexible distance measure for various data types and applications, adaptable to different norms.
+Task:
+    1.  Write a Python function `minkowski_distance(vec1, vec2, p)` that calculates the Minkowski distance between two vectors.
+    2.  Use the function to calculate the distance between vectors `[1, 2, 3]` and `[4, 5, 6]` for:
+        * p = 1 (Manhattan distance)
+        * p = 2 (Euclidean distance)
+        * p = 3 (a general Minkowski distance)
+    3.  Observe how the distance changes with different values of 'p'.
+
+def minkowski_distance(vec1, vec2, p):
+    if len(vec1) != len(vec2):
+        raise ValueError("Vectors must be of equal length")
+    abs_diffs = [abs(vec1[i] - vec2[i]) for i in range(len(vec1))]
+    return sum(xp for x in abs_diffs)(1/p)
+
+vec1 = [1, 2, 3]
+vec2 = [4, 5, 6]
+
+print(f"Minkowski distance (p=1): {minkowski_distance(vec1, vec2, 1)}")
+print(f"Minkowski distance (p=2): {minkowski_distance(vec1, vec2, 2)}")
+print(f"Minkowski distance (p=3): {minkowski_distance(vec1, vec2, 3)}")
+
